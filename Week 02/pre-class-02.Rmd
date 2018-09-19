@@ -39,10 +39,11 @@ exp.draws.10 <- rexp(n=200, rate=10)
     b. Use `plot()` with this vector to display the random values from your standard distribution in order.
     c. Now, use `plot()` with two arguments -- any two of your other stored random value vectors -- to create a scatterplot of the two vectors against each other.
 
+```{r}
 hist(exp.draws.1)
 plot(exp.draws.1)
 plot(exp.draws.5, exp.draws.10)
-
+```
 
 4. We'd now like to compare the properties of each of our vectors. Begin by creating a vector of the means of each of our five distributions in the order we created them and saving this to a variable name of your choice. Using this and other similar vectors, create the following scatterplots and explain in words what is going on:
     a. The five means versus the five rates used to generate the distribution.
@@ -50,6 +51,16 @@ plot(exp.draws.5, exp.draws.10)
     c. The means versus the standard deviations.
 
 For each plot, explain in words what's going on.
+
+```{r}
+v.means <- c(mean(exp.draws.0.2), mean(exp.draws.1), mean(exp.draws.5), mean(exp.draws.7.3), mean(exp.draws.10))
+v.rates <- c(0.2, 1, 5, 7.2, 10)
+v.sds <- c(sd(exp.draws.0.2), sd(exp.draws.1), sd(exp.draws.5), sd(exp.draws.7.3), sd(exp.draws.10))
+
+plot(v.rates, v.means)
+plot(v.rates, v.sds)
+plot(v.means, v.sds)
+///
 
 ### Part II (PHP 2560 Only)
 
