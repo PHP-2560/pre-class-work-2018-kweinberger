@@ -34,8 +34,26 @@ gapminder %>% group_by(continent) %>% summarize(n_countries = n_distinct(country
 ```
 
 2. Which European nation had the lowest GDP per capita in 1997? 
+
+```{r}
+gapminder %>% filter(year == 1997 & continent == "Europe") %>% arrange(gdpPercap) # Albania
+```
+
 3. According to the data available, what was the average life expectancy across each continent in the 1980s?
+
+```{r}
+gapminder %>% group_by(continent) %>% summarise(avg_lexp = mean(lifeExp))
+```
+
 4. What 5 countries have the highest total GDP over all years combined?
+
+```{r}
+# I'm interpreting "over all years combined" to mean GDP added across years
+gapminder %>% group_by(country) %>% summarise(total_gdp = sum(gdpPercap)) %>% arrange(desc(total_gdp))
+# Top 5: Kuwait, Switzerland, Norway, United States, Canada
+
+```
+
 5. What countries and years had life expectancies of _at least_ 80 years? _N.b. only output the columns of interest: country, life expectancy and year (in that order)._
 6. What 10 countries have the strongest correlation (in either direction) between life expectancy and per capita GDP?
 7. Which combinations of continent (besides Asia) and year have the highest average population across all countries? _N.b. your output should include all results sorted by highest average population_. With what you already know, this one may stump you. See [this Q&A](http://stackoverflow.com/q/27207963/654296) for how to `ungroup` before `arrange`ing. This also [behaves differently in more recent versions of dplyr](https://github.com/hadley/dplyr/releases/tag/v0.5.0).
