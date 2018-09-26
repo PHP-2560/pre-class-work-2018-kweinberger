@@ -9,3 +9,4 @@ Before you continue, Edit this document with:
 - Preferred Name: Kate
 - Brown Name: Kate Weinberger
 - Brown E-mail: kate_weinberger@brown.edu
+- Note: I'm a postdoc auditing this class -- no need to grade my work.
