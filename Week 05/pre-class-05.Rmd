@@ -1,7 +1,6 @@
 # pre-class
 
 
-
 Make sure you commit this often with meaningful messages. 
 
 
@@ -101,6 +100,27 @@ B. Assign all the numeric columns of the original WCGS dataset to a new dataset 
 C. Using a loop and your new function, standardize all the variables WCGS.new dataset.
 D. What should the mean and standard deviation of all your new standardized variables be? Test your prediction by running a loop
 
+```{r}
+
+library(tidyverse)
+
+standardize.me <- function(x) {
+  (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
+}
+
+WCGS.new <- wcgs %>% select(id, age, height, weight, sbp, dbp, chol, ncigs, time169, bmi, agecat)
+
+for (i in seq_along(WCGS.new)) {
+  WCGS.new[[i]] <- standardize.me(WCGS.new[[i]])
+}
+
+for (i in seq_along(WCGS.new)) {
+  print(mean(WCGS.new[[i]], na.rm=T))
+  print(sd(WCGS.new[[i]], na.rm=T))
+}
+
+
+```
 
 
 
@@ -108,4 +128,24 @@ D. What should the mean and standard deviation of all your new standardized vari
 
 A. Using a loop, calculate the mean weight of the subjects separated by the type of CHD they have.
 B. Now do the same thing, but now don’t use a loop
+
+```{r}
+
+for (i in c("no CHD", "MI or SD", "silent MI", "angina")) {
+  chd <- filter(wcgs, typchd69 == i) 
+  print(mean(chd$weight, na.rm = TRUE))
+}
+
+wt_by_group <- function(x, typchd) {
+  chd <- filter(x, typchd69 == typchd)
+  mean(chd$weight, na.rm = TRUE)
+}
+
+wt_by_group(wcgs, "no CHD")
+wt_by_group(wcgs, "MI or SD")
+wt_by_group(wcgs, "silent MI")
+wt_by_group(wcgs, "angina")
+
+```
+
 
